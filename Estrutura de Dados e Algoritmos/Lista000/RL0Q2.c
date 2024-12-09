@@ -79,20 +79,22 @@ int verificarDado(char buffer[], String listaString[], String listaStringOrdenad
     for (int icont = 0; icont < strlen(buffer); icont = icont + 1){
         if (buffer[icont] == '.'){
             pontoCount = pontoCount + 1;
+            break;
         }
-
-        if (isdigit(buffer[icont]) || buffer[icont] == '.'){
-            isFloat = true;
-        } else { isFloat = false; break; }
+    }
+    
+    if (pontoCount == 1){
+        isFloat = true;
+    } else if (pontoCount == 0) { 
+        isFloat = false; 
     }
 
-    if (isFloat == true && pontoCount == 1){
+    if (isFloat == true){
         listaFloat[*quantidadeFloat].fNumero = atof(buffer);
         listaFloatOrdenada[*quantidadeFloat].fNumero = atof(buffer);
         *quantidadeFloat = *quantidadeFloat + 1;
         return pontoFlutuante;
-    } else {
-
+    } else if(isFloat == false) {
         /* Verificar se o dado é um inteiro */
         for (int icont = 0; icont < strlen(buffer); icont = icont + 1){
             if (isdigit(buffer[icont])){
