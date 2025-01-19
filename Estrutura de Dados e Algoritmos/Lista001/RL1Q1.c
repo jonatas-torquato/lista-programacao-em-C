@@ -84,9 +84,14 @@ int main(){
 
     char line[1000];
     int qtdeLinhas = 0;
+    // Verifica a quanitdade de linhas no arquivo de entrada;
     while(fgets(line, sizeof(line), fp_in)){
         qtdeLinhas++;
     }
+    /*  Após ler o arquivo para calcular a qtdeLinhas, redefine 
+        o ponteiro do arquivo (file position indicator) para o
+        ínicio do arquivo usando rewind.
+    */
     rewind(fp_in);
 
     // Separa a string em pedaços chamados 'slices' por linha
@@ -145,11 +150,9 @@ int main(){
                 for(int j=0; j<linha.listasNumerosNaturais[i].contador; j++){
                     fprintf(fp_out, " %d", linha.listasNumerosNaturais[i].numeros[j]);
                 }
-                // AJEITAR !!
                 if(!linha.listasNumerosNaturais[linha.totalListas - 1].contador - 1){
                     fprintf(fp_out, " ");
                 }
-                
             }
         }
 
@@ -169,4 +172,3 @@ int main(){
         
     return EXIT_SUCCESS;
 }
-
