@@ -1,10 +1,23 @@
+/*
+    ----- Dados do Aluno -----
+    Nome: Pedro Vitor Aquino Ferreira
+    email: pedro.aquino.ct@gmail.com
+    Matrícula: 20222160022
+    Semestre: 2024/2
+
+    ----- Dados do Aluno -----
+    Nome: Jônatas Alfa Torquato de Souza
+    email: jonatas.alfatorquato@gmail.com
+    Matrícula: 20221160002
+    Semestre: 2024/2
+*/
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define TAM 1000
 #define MAX 1000
-
 #define EXIT -2
 #define CHEIA -3
 #define VAZIA -4

@@ -1,9 +1,22 @@
+/*
+    ----- Dados do Aluno -----
+    Nome: Pedro Vitor Aquino Ferreira
+    email: pedro.aquino.ct@gmail.com
+    Matrícula: 20222160022
+    Semestre: 2024/2
+
+    ----- Dados do Aluno -----
+    Nome: Jônatas Alfa Torquato de Souza
+    email: jonatas.alfatorquato@gmail.com
+    Matrícula: 20221160002
+    Semestre: 2024/2
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <limits.h>
-
 #define ERROR -1
 
 // Struct para representar uma lista de números naturais
@@ -141,8 +154,8 @@ int main(){
         for(int i = 0; i <= linha.totalListas; i++){
             ultimaPosicao[linha.listasNumerosNaturais[i].soma] = i; // Armazenar o índice da última ocorrência da soma
         }
-
         int ultimaLista = INT_MIN; // Variável para armazenar a última soma impressa
+        /*
         for(int i=0; i<=linha.totalListas; i++){
             // Imprimir apenas se a soma da lista for a última ocorrência dessa soma
             if(i == ultimaPosicao[linha.listasNumerosNaturais[i].soma]){
@@ -150,7 +163,22 @@ int main(){
                 for(int j=0; j<linha.listasNumerosNaturais[i].contador; j++){
                     fprintf(fp_out, " %d", linha.listasNumerosNaturais[i].numeros[j]);
                 }
-                if(!linha.listasNumerosNaturais[linha.totalListas - 1].contador - 1){
+                if(linha.listasNumerosNaturais[linha.totalListas - 1].contador - 1){
+                    if(!linha.listasNumerosNaturais[linha.totalListas].contador - 1){
+                        fprintf(fp_out, " ");
+                    }
+                }
+            }
+        } */
+
+        for (int i = 0; i <= linha.totalListas; i++) {
+            if (i == ultimaPosicao[linha.listasNumerosNaturais[i].soma]) {
+                fprintf(fp_out, "start");
+                for (int j = 0; j < linha.listasNumerosNaturais[i].contador; j++) {
+                    fprintf(fp_out, " %d", linha.listasNumerosNaturais[i].numeros[j]);
+                }
+                // Não adicionar espaço no final, mas apenas se não for a última lista
+                if (i != linha.totalListas) {
                     fprintf(fp_out, " ");
                 }
             }
