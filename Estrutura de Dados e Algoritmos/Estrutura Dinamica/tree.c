@@ -1,6 +1,7 @@
 /*
     Implementação de uma Arvore de Busca Binária com as principais operações de acordo com
     o conceito apresentado por Thomas H. Cormen, em seu livro "Algortimos: Teoria e Prática".
+    Inserir, Imprimir, Localizar, Excluir, Sucessor, Predecessor, Mínimo, Máximo e mais.
 */
 
 #include <stdio.h>
@@ -33,7 +34,6 @@ void delete();
 int main(){
     
     Tree *arvore = criarEmptyTree();
-    
     int valor;
     
     int opcao;
@@ -131,9 +131,9 @@ int main(){
                 scanf("%d", &valor);
                 if(localizar(arvore, valor) != NULL){
                     if(predecessor(localizar(arvore, valor)) == NULL){
-                        printf("\n\t%d nao possui Sucessor", valor);
+                        printf("\n\t%d nao possui Predecessor", valor);
                     } else{
-                        printf("\n\tO Sucessor de %d = %d", valor, predecessor(localizar(arvore, valor))->value);
+                        printf("\n\tO Predecessor de %d = %d", valor, predecessor(localizar(arvore, valor))->value);
                     }
                 } else{
                     printf("\n\tValor nao encontrado na Arvore.\n");
@@ -303,20 +303,21 @@ void delete(Tree *tree, Node *remove){
     if(x != NULL){
         // O pai de x recebe o pai de y
         x->parent = y->parent;
-        if(y->parent == NULL){
-            /*  
-                Se o pai de y for NULL, signigica o Remove é a raiz,
-                logo o seu filho (x) à esquerda ou a direita vai se tornar a raiz.
-            */    
-            tree->root = x;
+    }
+
+    if(y->parent == NULL){
+        /*  
+            Se o pai de y for NULL, signigica o Remove é a raiz,
+            logo o seu filho (x) à esquerda ou a direita vai se tornar a raiz.
+        */    
+        tree->root = x;
+    } else{
+        /*  Se o y não for a Raiz, verifica se a esquerda do seu pai é igual a y
+        */
+        if(y == y->parent->left){
+            y->parent->left = x;
         } else{
-            /*  Se o y não for a Raiz, verifica se a esquerda do seu pai é igual a y
-            */
-            if(y->parent->left == y){
-                y->parent->left = x;
-            } else{
-                y->parent->right = x;
-            }
+            y->parent->right = x;
         }
     }
 
@@ -324,6 +325,7 @@ void delete(Tree *tree, Node *remove){
         remove->value = y->value;
     }
 
+    free(y);
 }
 
 // Versão do Thomas Cormen usando Transplant e Delete //
