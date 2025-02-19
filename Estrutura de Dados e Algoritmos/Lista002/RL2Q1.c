@@ -121,7 +121,7 @@ int main(){
 
     int countLinhas = 0;
 
-    while(fgets(line, sizeof(line), fp_in)){
+    /*while(fgets(line, sizeof(line), fp_in)){
         Tree *arvore = criarEmptyTree();
         char *slice = strtok(line, " ");
 
@@ -158,6 +158,51 @@ int main(){
         }
         countLinhas++;
         
+        freeNode(arvore->root);
+        free(arvore);
+    }*/
+    while(fgets(line, sizeof(line), fp_in)){
+        Tree *arvore = criarEmptyTree();
+        
+        if(countLinhas > 0){
+            fprintf(fp_out, "\n");
+        }
+
+        char *pointer = line;
+        int num, firstNumber = 1;
+
+        while (sscanf(pointer, "%d", &num) == 1) {
+            Node *aux = criarNode(num);
+            inserir(aux, arvore);
+
+            if (!firstNumber){
+                fprintf(fp_out, " ");
+            }
+
+            fprintf(fp_out, "%d", altura(aux));
+            firstNumber = 0;
+
+            // Avança o ponteiro para o próximo número na linha
+            while (*pointer != ' ' && *pointer != '\0') {
+                pointer++;
+            }
+            while (*pointer == ' ') {
+                pointer++;
+            }
+        }
+
+        Node *max = maximumTree(arvore->root);
+        Node *pred = predecessor(max);
+
+        fprintf(fp_out, " max %d alt %d", max->value, altura(max));
+        
+        if(pred == NULL){
+            fprintf(fp_out, " pred NaN");
+        } else{
+            fprintf(fp_out, " pred %d", pred->value);
+        }
+
+        countLinhas++;
         freeNode(arvore->root);
         free(arvore);
     }
