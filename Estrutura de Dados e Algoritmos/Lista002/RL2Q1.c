@@ -120,47 +120,7 @@ int main(){
     char line[1000];
 
     int countLinhas = 0;
-
-    /*while(fgets(line, sizeof(line), fp_in)){
-        Tree *arvore = criarEmptyTree();
-        char *slice = strtok(line, " ");
-
-        if(countLinhas > 0){
-            fprintf(fp_out, "\n");
-        }
-
-        int firstNumber = 1;
-        while(slice != NULL){
-            int num = atoi(slice);
-
-            Node *aux = criarNode(num);
-            inserir(aux, arvore);
-
-            if(!firstNumber){
-                fprintf(fp_out, " ");
-            }
-            
-            fprintf(fp_out, "%d", altura(aux));
-            firstNumber = 0;
-
-            slice = strtok(NULL, " ");
-        }
-
-        Node *max = maximumTree(arvore->root);
-        Node *pred = predecessor(max);
-
-        fprintf(fp_out, " max %d alt %d", max->value, altura(max));
-        
-        if(pred == NULL){
-            fprintf(fp_out, " pred NaN");
-        } else{
-            fprintf(fp_out, " pred %d", pred->value);
-        }
-        countLinhas++;
-        
-        freeNode(arvore->root);
-        free(arvore);
-    }*/
+    
     while(fgets(line, sizeof(line), fp_in)){
         Tree *arvore = criarEmptyTree();
         
